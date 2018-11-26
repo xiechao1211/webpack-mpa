@@ -17,7 +17,7 @@ module.exports = merge(baseWebpackConfig,{
         // filename: path.posix.join('static','[name]/[name].[chunkhash].js'),
         filename: '[name].[chunkhash].js',
         // 公共文件提取路径
-        chunkFilename: path.posix.join('static','[name]/[name].[chunkhash].js')
+        chunkFilename: path.posix.join('static','[name].[chunkhash].js')
     },
     // webpack打包时的插件配置
     plugins:[
@@ -26,7 +26,8 @@ module.exports = merge(baseWebpackConfig,{
         // css提取成单独的文件
         new MiniCssExtractPlugin({
             // filename: path.posix.join('static','[name]/[name].css')
-            filename: '[name].[contenthash].css'
+            filename: '[name].[contenthash].css',
+            chunkFilename: path.posix.join('static','[name].[contenthash].css')
         }),
         // Compress extracted CSS. We are using this plugin so that possible
         // duplicated CSS from different components can be deduped.
@@ -36,21 +37,6 @@ module.exports = merge(baseWebpackConfig,{
             }
         }),
         // 混淆压缩js
-        new UglifyJSPlugin(),
-        // html处理
-        // new HtmlWebpackPlugin({
-        //     filename: 'index.html',
-        //     template: 'index.html',
-        //     inject: true,
-        //     minify: {
-        //       removeComments: true,
-        //       collapseWhitespace: true,
-        //       removeAttributeQuotes: true
-        //       // more options:
-        //       // https://github.com/kangax/html-minifier#options-quick-reference
-        //     },
-        //     // necessary to consistently work with multiple chunks via CommonsChunkPlugin
-        //     chunksSortMode: 'dependency'
-        //   })
+        // new UglifyJSPlugin(),
     ]
 })

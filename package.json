@@ -6,7 +6,7 @@
   "scripts": {
     "start": "npm run dev",
     "dev": "webpack-dev-server --mode development --inline --config config/webpack.dev.config.js",
-    "prod": "webpack --mode production --config config/webpack.prod.config.js",
+    "prod": "webpack --mode development --config config/webpack.prod.config.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -16,6 +16,7 @@
     "html-loader": "^0.5.5",
     "jquery": "^3.3.1",
     "lodash": "^4.17.11",
+    "querystring": "^0.2.0",
     "url-loader": "^1.1.2"
   },
   "devDependencies": {

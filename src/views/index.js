@@ -1,3 +1,4 @@
+import '@/common/base.less'
 import './index.less'
 import {getStr} from '@/components/utils'
 let a = getStr('我是common')
