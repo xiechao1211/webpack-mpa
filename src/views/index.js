@@ -4,6 +4,8 @@ $('.main').text('jquery')
 import {getStr} from '@/common/utils'
 let a = getStr('我是common')
 console.log(a)
+const t1 = require('@/common/test');
+t1('1')
 // const ax = require('axios')
 // import axios from 'axios'
 let data = [
