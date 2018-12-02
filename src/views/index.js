@@ -1,10 +1,11 @@
 import '@/common/base.less'
 import './index.less'
-import {getStr} from '@/components/utils'
+$('.main').text('jquery')
+import {getStr} from '@/common/utils'
 let a = getStr('我是common')
-// console.log(a)
-// console.log(222222)
-$('.main').text(123)
+console.log(a)
+// const ax = require('axios')
+// import axios from 'axios'
 let data = [
     {
         city:'sz',

@@ -32,7 +32,8 @@ Object.keys(entries).forEach(entry => {
         // template: path.resolve(__dirname,'..',path.join(dir,`/${entry}.html`)),
         filename: entry + '.html',
         template: path.resolve(__dirname, '..', path.join(dir, `/${baseName}.html`)),
-        chunks: [entry, 'vendor', 'common','styles'],
+        // 公共js插入
+        chunks: [entry, 'vendor', 'common','libs','styles'],
         inject: true,
         minify: {
             removeComments: true,
@@ -63,6 +64,9 @@ let webpackConfig = {
             'less': resolve('src/less'),
             '@': resolve('src')
         }
+    },
+    externals: {
+        // "/src/libs/axios.js": 'axios'
     },
     module: {
         // 配置webpack各种loader
@@ -125,23 +129,21 @@ let webpackConfig = {
                     test: /[\\/]node_modules[\\/]/,
                     chunks: "initial",
                     name: "vendor",
-                    priority: 10,
-                    enforce: true
+                    minChunks: 1,
                 },
+                // libs: {
+                //     test: /[\\/]src[\\/]libs[\\/]/,
+                //     chunks: "initial",
+                //     name: "libs",
+                //     minSize: 0,
+                //     minChunks: 1,
+                // },
                 common: {
-                    test: /[\\/]src[\\/]\/(.*)\.js/,
+                    test: /[\\/]src[\\/]common[\\/]/,
                     chunks: "initial",
                     name: "common",
-                    priority: 10,
-                    enforce: true
-                },
-                styles: {
-                    name: 'styles',
-                    test: /\.(less|css)$/,
-                    chunks: 'all',
+                    minSize: 0,
                     minChunks: 1,
-                    reuseExistingChunk: true,
-                    enforce: true
                 }
             }
         }
@@ -153,7 +155,6 @@ let webpackConfig = {
         }),
         ...htmlPlugins
     ],
-
 
 }
 // webpackConfig.plugins = webpackConfig.plugins.concat(htmlPlugins)
