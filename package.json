@@ -6,7 +6,8 @@
   "scripts": {
     "start": "npm run dev",
     "dev": "webpack-dev-server --mode development --inline --config config/webpack.dev.config.js",
-    "prod": "webpack --mode development --config config/webpack.prod.config.js",
+    "build": "webpack --mode development --config config/webpack.prod.config.js",
+    "prod": "webpack --mode=production --config config/webpack.prod.config.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

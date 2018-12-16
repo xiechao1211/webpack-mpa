@@ -10,6 +10,7 @@ const path = require("path")
 
 const distPath = path.resolve(__dirname, '../dist')
 module.exports = merge(baseWebpackConfig,{
+    cache: true,
     // webpack 打包输出的配置
     output:{
         path: distPath,
@@ -37,6 +38,40 @@ module.exports = merge(baseWebpackConfig,{
             }
         }),
         // 混淆压缩js
-        // new UglifyJSPlugin(),
-    ]
+        new UglifyJSPlugin(),
+    ],
+    optimization: {
+        minimize: true,
+        splitChunks: {
+            // 最大初始化请求数 如果不手动设置会导致production模式下打包不正常
+            maxInitialRequests: Infinity,
+            // vendor-公共第三方组件 common-项目内的的公共js styles-公共的样式
+            cacheGroups: {
+                // 从node_modules提取公用包
+                vendor: {
+                    test: /[\\/]node_modules[\\/]/,
+                    chunks: "initial",
+                    name: "vendor",
+                    minChunks: 1,
+                },
+                styles: {
+                    test: /[\\/]src[\\/]styles[\\/]/,
+                    chunks: "initial",
+                    name: "styles",
+                    // 最小文件大小
+                    minSize: 0,
+                    // 最小引用数量，必须大于1
+                    minChunks: 1,
+                },
+                common: {
+                    test: /[\\/]src[\\/]common[\\/].*\.js/,
+                    chunks: "initial",
+                    name: "common",
+                    minSize: 0,
+                    minChunks: 1,
+                }
+            }
+        }
+    },
+
 })

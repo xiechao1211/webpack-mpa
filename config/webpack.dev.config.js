@@ -30,7 +30,7 @@ let webpackConfig = merge(baseWebpackConfig, {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new MiniCssExtractPlugin({
-        filename: "[name].css"
+        filename: '[name].[contenthash].css'
     }),
     // new HtmlWebpackPlugin({
     //     filename: 'index.html',

@@ -1,4 +1,7 @@
-import '@/common/base.less'
+// 引入公共样式，只引入一次即可，其他页面不需引入，从而可以全局加载
+import '@/styles/base.less'
+import '@/styles/ui.less'
+
 import './index.less'
 $('.main').text('jquery')
 import {getStr} from '@/common/utils'

@@ -33,7 +33,8 @@ Object.keys(entries).forEach(entry => {
         filename: entry + '.html',
         template: path.resolve(__dirname, '..', path.join(dir, `/${baseName}.html`)),
         // 公共js插入
-        chunks: [entry, 'vendor', 'common','libs','styles'],
+        // vendor-公共第三方组件 common-项目内的的公共js styles-公共的样式
+        chunks: [entry, 'vendor', 'common','styles'],
         inject: true,
         minify: {
             removeComments: true,
@@ -120,34 +121,7 @@ let webpackConfig = {
 
         ]
     },
-    optimization: {
-        minimize: false,
-        splitChunks: {
-            cacheGroups: {
-                // 从node_modules提取公用包
-                vendor: {
-                    test: /[\\/]node_modules[\\/]/,
-                    chunks: "initial",
-                    name: "vendor",
-                    minChunks: 1,
-                },
-                // libs: {
-                //     test: /[\\/]src[\\/]libs[\\/]/,
-                //     chunks: "initial",
-                //     name: "libs",
-                //     minSize: 0,
-                //     minChunks: 1,
-                // },
-                common: {
-                    test: /[\\/]src[\\/]common[\\/]/,
-                    chunks: "initial",
-                    name: "common",
-                    minSize: 0,
-                    minChunks: 1,
-                }
-            }
-        }
-    },
+
     plugins: [
         new webpack.ProvidePlugin({
             $: 'jquery',
